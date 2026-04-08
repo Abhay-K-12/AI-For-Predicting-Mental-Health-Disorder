@@ -115,12 +115,6 @@ The system is trained on two complementary datasets:
   - Normal
 - **Format**: Yes/No responses to mental health symptoms
 
-### Form Responses Dataset (`Mental Health Emotion Survey- AI research (Responses) - Form Responses 1.csv`)
-- **Source**: Google Forms survey responses
-- **Format**: Likert scale (1-5) responses
-- **Features**: 20+ detailed assessment questions
-- **Enhanced Analysis**: More nuanced mental health evaluation
-
 ### Feature Categories:
 - **Emotional States**: Nervousness, panic, hopelessness, anger
 - **Physical Symptoms**: Rapid breathing, sweating, sleep issues
@@ -349,20 +343,6 @@ We welcome contributions to improve the Mental Health AI system!
 
 ---
 
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-**Permissions:**
-- ✅ Commercial use
-- ✅ Modification
-- ✅ Distribution
-- ✅ Private use
-
-**Limitations:**
-- ❌ Liability
-- ❌ Warranty
-
 ---
 
 ## 👥 Acknowledgments
@@ -384,13 +364,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - Accessibility best practices
 
 ---
-
-## 📞 Contact
-
-**Project Developer**: Abhay
-**Project Type**: Final Year Engineering Project
-**Institution**: [Your Institution Name]
-
 ### Support
 For technical issues or questions:
 - Create an issue in the repository
@@ -527,7 +500,7 @@ This project is created for educational and research purposes. All rights reserv
 
 **Project Team**: St. Joseph Engineering College  
 **Project Title**: AI for Predicting Mental Health Disorders  
-**Academic Year**: 2024-2025
+**Academic Year**: 2025-2026
 
 ---
 
