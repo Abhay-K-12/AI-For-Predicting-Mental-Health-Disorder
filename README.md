@@ -145,7 +145,7 @@ The system is trained on two complementary datasets:
 cd "d:\Final Year Project"
 
 # Clone the repository (if using git)
-git clone <repository-url>
+git clone https://github.com/Abhay-K-12/AI-For-Predicting-Mental-Health-Disorder.git
 
 # Or download and extract the ZIP file
 # Then navigate to the project directory
@@ -286,14 +286,11 @@ mental-health-ai/
 │
 ├── 📊 Mental_health_dset.csv   # Primary training dataset
 ├── 📊 Mental Health Emotion Survey- AI research (Responses) - Form Responses 1.csv
-│                               # Form responses dataset
-│
 ├── 📁 templates/               # HTML templates
 │   ├── 📄 index.html          # Home page
 │   ├── 📄 test.html           # Assessment form
 │   ├── 📄 chatbot.html        # Interactive chatbot
 │   └── 📄 report.html         # Results report
-│
 └── 🤖 *.pkl                    # Trained model files (generated)
     ├── mental_health_model.pkl
     └── label_encoder.pkl
@@ -319,8 +316,6 @@ We welcome contributions to improve the Mental Health AI system!
 - **Documentation**: Update README for significant changes
 - **Privacy**: Ensure no user data is logged or stored
 - **Accessibility**: Maintain WCAG 2.1 AA compliance
-
----
 
 ---
 
