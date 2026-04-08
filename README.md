@@ -169,14 +169,14 @@ The system is trained on two complementary datasets:
 #### 1. Clone/Download Project
 ```bash
 # Navigate to your desired directory
-cd "path/to/your/projects/folder"
+cd "d:\Final Year Project"
 
 # Clone the repository (if using git)
 git clone <repository-url>
 
 # Or download and extract the ZIP file
 # Then navigate to the project directory
-cd "final final year project"
+cd "Final Year Project"
 ```
 
 #### 2. Create Virtual Environment (Recommended)
