@@ -16,27 +16,6 @@
 
 ---
 
-## 📋 Table of Contents
-
-- [🧠 Mental Health AI - Final Year Project](#-mental-health-ai---final-year-project)
-  - [📋 Table of Contents](#-table-of-contents)
-  - [🎯 Project Overview](#-project-overview)
-  - [✨ Features](#-features)
-  - [🏗️ System Architecture](#️-system-architecture)
-  - [📊 Dataset Information](#-dataset-information)
-  - [🛠️ Technology Stack](#️-technology-stack)
-  - [🚀 Installation \& Setup](#-installation--setup)
-  - [📱 Usage Guide](#-usage-guide)
-  - [🔬 Model Performance](#-model-performance)
-  - [🧪 Testing](#-testing)
-  - [📁 Project Structure](#-project-structure)
-  - [🤝 Contributing](#-contributing)
-  - [📄 License](#-license)
-  - [👥 Acknowledgments](#-acknowledgments)
-  - [📞 Contact](#-contact)
-
----
-
 ## 🎯 Project Overview
 
 This is an AI-powered mental health disorder prediction system designed to help users understand their mental health status through comprehensive assessments and personalized recommendations. The system combines advanced machine learning algorithms with an intuitive chatbot interface to provide detailed mental health analysis and coping strategies.
@@ -495,13 +474,6 @@ This project is created for educational and research purposes. All rights reserv
 - **Technologies**: Flask, Scikit-learn, Pandas, NumPy
 - **Icons**: Font Awesome for UI elements
 - **Research**: Mental health research community
-
-## 📞 Contact Information
-
-**Project Team**: St. Joseph Engineering College  
-**Project Title**: AI for Predicting Mental Health Disorders  
-**Academic Year**: 2025-2026
-
 ---
 
 **Remember**: This tool is designed to support mental health awareness and education. Always seek professional help for serious mental health concerns.
