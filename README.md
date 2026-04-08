@@ -455,21 +455,6 @@ python app.py
 - **Integration**: Healthcare provider integration
 - **Analytics**: Usage analytics and insights
 
-## 👥 Contributing
-
-This is a final year project for St. Joseph Engineering College. For academic collaboration or research purposes, please contact the project team.
-
-## 📄 License
-
-This project is created for educational and research purposes. All rights reserved.
-
-## 🤝 Acknowledgments
-
-- **Dataset**: Mental health dataset for training
-- **Technologies**: Flask, Scikit-learn, Pandas, NumPy
-- **Icons**: Font Awesome for UI elements
-- **Research**: Mental health research community
----
 
 **Remember**: This tool is designed to support mental health awareness and education. Always seek professional help for serious mental health concerns.
 
