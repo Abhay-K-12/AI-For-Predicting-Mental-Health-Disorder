@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mental Health AI - Your Report</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .report-container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        .report-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .report-title {
+            font-size: 2.5rem;
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .report-date {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .accuracy {
+            margin-top: 8px;
+            color: #555;
+            font-size: .95rem;
+        }
+
+        .severity-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .severity-title {
+            font-size: 1.8rem;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .severity-scale {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 30px 0;
+            gap: 10px;
+        }
+
+        .scale-item {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .scale-item.active {
+            transform: scale(1.2);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .scale-1 { background: #28a745; }
+        .scale-2 { background: #ffc107; }
+        .scale-3 { background: #fd7e14; }
+        .scale-4 { background: #dc3545; }
+        .scale-5 { background: #6f42c1; }
+
+        .severity-description {
+            font-size: 1.2rem;
+            color: #555;
+            margin-top: 20px;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            border-left: 5px solid #667eea;
+        }
+
+        .disorder-section {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border-left: 5px solid #667eea;
+        }
+
+        .disorder-title {
+            font-size: 1.8rem;
+            color: #667eea;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .disorder-title i {
+            margin-right: 15px;
+            font-size: 2rem;
+        }
+
+        .disorder-description {
+            font-size: 1.1rem;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .recommendations-section {
+            background: #fff3cd;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border-left: 5px solid #ffc107;
+        }
+
+        .recommendations-title {
+            font-size: 1.8rem;
+            color: #856404;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .recommendations-title i {
+            margin-right: 15px;
+            font-size: 2rem;
+        }
+
+        .recommendations-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .recommendations-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid #ffeaa7;
+            color: #856404;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .recommendations-list li:before {
+            content: "💡";
+            margin-right: 15px;
+            font-size: 1.2rem;
+        }
+
+        .recommendations-list li:last-child {
+            border-bottom: none;
+        }
+
+        .resources-section {
+            background: #d1ecf1;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border-left: 5px solid #17a2b8;
+        }
+
+        .resources-title {
+            font-size: 1.8rem;
+            color: #0c5460;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .resources-title i {
+            margin-right: 15px;
+            font-size: 2rem;
+        }
+
+        .resource-item {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border-left: 4px solid #17a2b8;
+        }
+
+        .resource-name {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #0c5460;
+            margin-bottom: 10px;
+        }
+
+        .resource-details {
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        .resource-contact {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .contact-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #17a2b8;
+            font-weight: 600;
+        }
+
+        .contact-info i {
+            font-size: 1.1rem;
+        }
+
+        .next-steps-section {
+            background: #d4edda;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border-left: 5px solid #28a745;
+        }
+
+        .next-steps-title {
+            font-size: 1.8rem;
+            color: #155724;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .next-steps-title i {
+            margin-right: 15px;
+            font-size: 2rem;
+        }
+
+        .next-steps-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .next-steps-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid #c3e6cb;
+            color: #155724;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .next-steps-list li:before {
+            content: "➤";
+            margin-right: 15px;
+            font-size: 1.2rem;
+            color: #28a745;
+        }
+
+        .next-steps-list li:last-child {
+            border-bottom: none;
+        }
+
+        .chatbot-insights {
+            background: #e2e3e5;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border-left: 5px solid #6c757d;
+        }
+
+        .chatbot-insights-title {
+            font-size: 1.8rem;
+            color: #495057;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .chatbot-insights-title i {
+            margin-right: 15px;
+            font-size: 2rem;
+        }
+
+        .insights-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .insights-list li {
+            padding: 12px 0;
+            color: #495057;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .insights-list li:before {
+            content: "💭";
+            margin-right: 15px;
+            font-size: 1.2rem;
+        }
+
+        .action-buttons {
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            margin: 0 10px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+
+        .btn-secondary:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        .disclaimer {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            color: #856404;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .disclaimer strong {
+            color: #856404;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .report-container {
+                padding: 25px 20px;
+            }
+            
+            .report-title {
+                font-size: 2rem;
+            }
+            
+            .severity-scale {
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+            
+            .scale-item {
+                width: 50px;
+                height: 50px;
+                font-size: 1rem;
+            }
+            
+            .btn {
+                display: block;
+                margin: 10px auto;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-chart-line"></i> Your Mental Health Report</h1>
+            <p>Comprehensive analysis and personalized recommendations</p>
+        </div>
+
+        <div class="report-container">
+            <div class="report-header">
+                <h1 class="report-title">Mental Health Assessment Report</h1>
+                <p class="report-date">Generated on {{ report.generated_date }}</p>
+                
+            </div>
+
+            <!-- Severity Section -->
+            <div class="severity-section">
+                <h2 class="severity-title">Severity Assessment</h2>
+                <div class="severity-scale">
+                    <div class="scale-item scale-1 {% if report.severity_scale == 1 %}active{% endif %}">1</div>
+                    <div class="scale-item scale-2 {% if report.severity_scale == 2 %}active{% endif %}">2</div>
+                    <div class="scale-item scale-3 {% if report.severity_scale == 3 %}active{% endif %}">3</div>
+                    <div class="scale-item scale-4 {% if report.severity_scale == 4 %}active{% endif %}">4</div>
+                    <div class="scale-item scale-5 {% if report.severity_scale == 5 %}active{% endif %}">5</div>
+                </div>
+                <p class="severity-description">
+                    <strong>Your Assessment:</strong> {{ report.severity_description }}
+                </p>
+            </div>
+
+            <!-- Disorder Section -->
+            <div class="disorder-section">
+                <h2 class="disorder-title">
+                    <i class="fas fa-brain"></i>
+                    Identified Condition
+                </h2>
+                <p class="disorder-description">
+                    Based on your responses, our AI system has identified that you may be experiencing 
+                    <strong>{{ report.disorder }}</strong>. This assessment is based on patterns in your responses 
+                    and is designed to provide guidance for your mental health journey.
+                </p>
+            </div>
+
+            <!-- Recommendations Section -->
+            <div class="recommendations-section">
+                <h2 class="recommendations-title">
+                    <i class="fas fa-lightbulb"></i>
+                    Personalized Recommendations
+                </h2>
+                <ul class="recommendations-list">
+                    {% for recommendation in report.recommendations %}
+                    <li>{{ recommendation }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <!-- Resources Section -->
+            <div class="resources-section">
+                <h2 class="resources-title">
+                    <i class="fas fa-hands-helping"></i>
+                    Professional Resources & Support
+                </h2>
+                
+                <!-- Emergency Resources -->
+                <div class="resource-item">
+                    <div class="resource-name">{{ report.resources.emergency.name }}</div>
+                    <div class="resource-details">{{ report.resources.emergency.description }}</div>
+                    <div class="resource-contact">
+                        <span class="contact-info">
+                            <i class="fas fa-phone"></i>
+                            {{ report.resources.emergency.phone }}
+                        </span>
+                    </div>
+                </div>
+
+                <!-- General Resources -->
+                <div class="resource-item">
+                    <div class="resource-name">{{ report.resources.general.name }}</div>
+                    <div class="resource-contact">
+                        <span class="contact-info">
+                            <i class="fas fa-phone"></i>
+                            {{ report.resources.general.phone }}
+                        </span>
+                        <span class="contact-info">
+                            <i class="fas fa-globe"></i>
+                            <a href="{{ report.resources.general.website }}" target="_blank" style="color: #17a2b8; text-decoration: none;">
+                                Visit Website
+                            </a>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Disorder-Specific Resources -->
+                {% if report.resources.disorder_specific %}
+                <div class="resource-item">
+                    <div class="resource-name">{{ report.resources.disorder_specific.name }}</div>
+                    <div class="resource-contact">
+                        <span class="contact-info">
+                            <i class="fas fa-phone"></i>
+                            {{ report.resources.disorder_specific.phone }}
+                        </span>
+                        {% if report.resources.disorder_specific.website %}
+                        <span class="contact-info">
+                            <i class="fas fa-globe"></i>
+                            <a href="{{ report.resources.disorder_specific.website }}" target="_blank" style="color: #17a2b8; text-decoration: none;">
+                                Visit Website
+                            </a>
+                        </span>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+
+            <!-- Next Steps Section -->
+            <div class="next-steps-section">
+                <h2 class="next-steps-title">
+                    <i class="fas fa-route"></i>
+                    Recommended Next Steps
+                </h2>
+                <ul class="next-steps-list">
+                    {% for step in report.next_steps %}
+                    <li>{{ step }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <!-- Chatbot Insights Section -->
+            {% if report.chatbot_insights %}
+            <div class="chatbot-insights">
+                <h2 class="chatbot-insights-title">
+                    <i class="fas fa-comments"></i>
+                    Insights from Your Responses
+                </h2>
+                <ul class="insights-list">
+                    {% for insight in report.chatbot_insights %}
+                    <li>{{ insight }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+
+            <!-- Action Buttons -->
+            <div class="action-buttons">
+                <a href="/" class="btn btn-primary">
+                    <i class="fas fa-home"></i> Back to Home
+                </a>
+                <a href="/take_test" class="btn btn-secondary">
+                    <i class="fas fa-redo"></i> Take Test Again
+                </a>
+            </div>
+
+            <!-- Disclaimer -->
+            <div class="disclaimer">
+                <strong>Important Disclaimer:</strong> This report is generated by an AI system for educational and research purposes only. 
+                It is not a substitute for professional medical advice, diagnosis, or treatment. Always consult with qualified 
+                healthcare professionals for any mental health concerns. If you are experiencing a mental health crisis, 
+                please contact emergency services or a crisis helpline immediately.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Add some interactive effects
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate severity scale
+            const activeScale = document.querySelector('.scale-item.active');
+            if (activeScale) {
+                activeScale.style.animation = 'pulse 2s infinite';
+            }
+
+            // Add smooth scrolling for any anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+
+        // Add CSS animation for pulse effect
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes pulse {
+                0% { transform: scale(1); }
+                50% { transform: scale(1.1); }
+                100% { transform: scale(1); }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Print functionality
+        function printReport() {
+            window.print();
+        }
+
+        // Add print button if needed
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && e.key === 'p') {
+                e.preventDefault();
+                printReport();
+            }
+        });
+    </script>
+</body>
+</html>
+
